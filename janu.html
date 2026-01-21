@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sorry Gauru 🧸❤️</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Comic Sans MS', 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ffd1dc, #ffe6f0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .card {
+    background: white;
+    padding: 30px 26px;
+    border-radius: 24px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    text-align: center;
+    max-width: 380px;
+    position: relative;
+  }
+  h1 {
+    color: #e75480;
+    min-height: 130px;
+    font-size: 24px;
+    line-height: 1.4;
+  }
+  .heart {
+    font-size: 46px;
+    animation: pulse 1.5s infinite;
+  }
+  .teddy {
+    font-size: 70px;
+    margin: 10px 0;
+    animation: bounce 2s infinite;
+  }
+  .big-teddy {
+    font-size: 110px;
+    margin: 15px 0;
+  }
+  .dance {
+    animation: dance 1s infinite;
+  }
+  .sad {
+    animation: sad 1.5s infinite;
+  }
+  button {
+    margin: 10px 8px 0 8px;
+    background: #e75480;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    padding: 12px 22px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  button:hover {
+    background: #d64570;
+  }
+  .float {
+    position: absolute;
+    font-size: 26px;
+    animation: floatUp 5s linear infinite;
+    opacity: 0.9;
+  }
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+    100% { transform: scale(1); }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+  @keyframes floatUp {
+    0% { bottom: -50px; opacity: 0; }
+    10% { opacity: 1; }
+    100% { bottom: 110%; opacity: 0; }
+  }
+  @keyframes dance {
+    0% { transform: rotate(0deg) translateY(0); }
+    25% { transform: rotate(10deg) translateY(-10px); }
+    50% { transform: rotate(0deg) translateY(0); }
+    75% { transform: rotate(-10deg) translateY(-10px); }
+    100% { transform: rotate(0deg) translateY(0); }
+  }
+  @keyframes sad {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+    100% { transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="teddy" id="smallTeddy">🧸</div>
+    <h1 id="msg">Sorry Gauru 😔<br>I really didn’t mean to hurt you.</h1>
+    <div class="heart" id="heart">❤️</div>
+    <button id="nextBtn" onclick="nextMsg()">Next Message 💌</button>
+    <div id="choiceBtns" style="display:none;">
+      <button onclick="yesClicked()">Yes 💖</button>
+      <button onclick="noClicked()">No 😔</button>
+    </div>
+    <div id="bigTeddy"></div>
+  </div>
+
+<script>
+  const messages = [
+    "Sorry Gauru 😔<br>I really didn’t mean to hurt you.",
+    "Tu gussa bhi kare toh mujhe cute hi lagti hai 🥺🧸<br>But haan… jab tu naraz hoti hai toh dil thoda sa toot jaata hai.",
+    "Real life mein tu hi meri jaan hai ❤️<br>Meri har smile, har khushi, har sukoon sirf tere saath hi complete hota hai.",
+    "Please maan ja na Gauru 🥺<br>Main promise karta hoon tujhe kabhi jaan-bujh ke hurt nahi karunga.",
+    "I love you so much Gauru 💖<br>Words kam pad jaate hain jab main apna pyaar express karta hoon.",
+    "Maaf krdo please janu 🥺🧸❤️<br>Your Harsh is really really sorry 💌"
+  ];
+  let index = 0;
+
+  function nextMsg() {
+    if (index < messages.length - 1) {
+      index++;
+      document.getElementById("msg").innerHTML = messages[index];
+      if (index === messages.length - 1) {
+        document.getElementById("nextBtn").style.display = "none";
+        document.getElementById("choiceBtns").style.display = "block";
+      }
+    }
+  }
+
+  function yesClicked() {
+    document.getElementById("msg").innerHTML =
+      "Yayyy 😭💖<br>Thank you for forgiving me Gauru!<br>I love you soooo much 🥺❤️";
+    document.getElementById("choiceBtns").style.display = "none";
+    document.getElementById("heart").innerText = "💖";
+    document.getElementById("bigTeddy").innerHTML =
+      "<div class='big-teddy dance'>🧸🎉</div>";
+  }
+
+  function noClicked() {
+    document.getElementById("msg").innerHTML =
+      "Oh no 😔💔<br>Please ek aur chance de do na Gauru…<br>Your Harsh is still waiting 🥺🧸";
+    document.getElementById("choiceBtns").style.display = "none";
+    document.getElementById("heart").innerText = "💔";
+    document.getElementById("bigTeddy").innerHTML =
+      "<div class='big-teddy sad'>🧸😢</div>";
+  }
+
+  // Increased frequency floating hearts and teddies
+  setInterval(() => {
+    const el = document.createElement('div');
+    el.className = 'float';
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.animationDuration = (3 + Math.random() * 3) + 's';
+    el.innerText = Math.random() > 0.5 ? '❤️' : '🧸';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 7000);
+  }, 350);
+</script>
+</body>
+</html>
